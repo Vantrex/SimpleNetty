@@ -7,7 +7,7 @@
     <groupId>de.vantrex.netty</groupId>
     <artifactId>SimpleNetty</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.1-RELEASE</version>
     <modules>
         <module>Client</module>
         <module>Server</module>
@@ -18,9 +18,9 @@
     <distributionManagement>
         <!-- Publish the versioned releases here -->
         <repository>
-            <id>aspire-nexus</id>
-            <name>SimpleNetty</name>
-            <url>http://vantrex.de:8081/repository/maven-releases/</url>
+            <id>github</id>
+            <name>GitHub SimpleNetty Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/Vantrex/SimpleNetty</url>
         </repository>
         <!-- Publish the versioned releases here -->
         <snapshotRepository>
@@ -28,6 +28,7 @@
             <name>SimpleNetty</name>
             <url>http://vantrex.de:8081/repository/maven-snapshots/</url>
         </snapshotRepository>
+
     </distributionManagement>
 
     <properties>
@@ -36,5 +37,23 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.1</version>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
