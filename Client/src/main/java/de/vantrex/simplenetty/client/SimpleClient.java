@@ -12,9 +12,11 @@ import io.netty.channel.epoll.EpollSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import lombok.Getter;
 
 import java.net.SocketAddress;
 
+@Getter
 public class SimpleClient {
 
     private static final boolean EPOLL = Epoll.isAvailable();

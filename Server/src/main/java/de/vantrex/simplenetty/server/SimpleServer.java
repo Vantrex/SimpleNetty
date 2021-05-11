@@ -18,13 +18,10 @@ import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import lombok.Getter;
 
-import java.util.concurrent.locks.AbstractOwnableSynchronizer;
-
 @Getter
 public class SimpleServer {
 
     private final static boolean EPOLL = Epoll.isAvailable();
-
 
     private final SimpleServerSettings settings;
 
