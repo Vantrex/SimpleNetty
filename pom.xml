@@ -7,7 +7,7 @@
     <groupId>de.vantrex.netty</groupId>
     <artifactId>SimpleNetty</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.1-RELEASE</version>
+    <version>1.0.1-SNAPSHOT</version>
     <modules>
         <module>Client</module>
         <module>Server</module>
@@ -17,11 +17,6 @@
 
     <distributionManagement>
         <!-- Publish the versioned releases here -->
-        <repository>
-            <id>github</id>
-            <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/Vantrex/SimpleNetty</url>
-        </repository>
         <!-- Publish the versioned releases here -->
         <snapshotRepository>
             <id>aspire-nexus</id>
