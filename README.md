@@ -1,6 +1,6 @@
 # SimpleNetty
 
-##Add as dependency:
+## Add as dependency:
 Repository: 
 ````
         <repository>
