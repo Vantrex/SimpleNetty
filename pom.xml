@@ -19,7 +19,7 @@
         <!-- Publish the versioned releases here -->
         <repository>
             <id>github</id>
-            <name>GitHub SimpleNetty Apache Maven Packages</name>
+            <name>GitHub Packages</name>
             <url>https://maven.pkg.github.com/Vantrex/SimpleNetty</url>
         </repository>
         <!-- Publish the versioned releases here -->
