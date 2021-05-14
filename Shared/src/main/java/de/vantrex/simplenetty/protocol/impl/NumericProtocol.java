@@ -3,6 +3,7 @@ package de.vantrex.simplenetty.protocol.impl;
 import de.vantrex.simplenetty.annotations.PacketId;
 import de.vantrex.simplenetty.annotations.exceptions.AnnotationNotFoundException;
 import de.vantrex.simplenetty.listener.SimplePacketListener;
+import de.vantrex.simplenetty.listener.SimpleSessionListener;
 import de.vantrex.simplenetty.listener.handler.SimplePacketHandler;
 import de.vantrex.simplenetty.packet.SimplePacket;
 import de.vantrex.simplenetty.packet.exceptions.PacketAlreadyRegisteredException;
@@ -20,6 +21,7 @@ import java.util.*;
 public class NumericProtocol implements Protocol<Integer> {
 
     private final Map<SimplePacketListener, Map<Class<? extends SimplePacket>, Method>> listeners = new HashMap<>();
+    private final List<SimpleSessionListener> sessionListeners = new ArrayList<>();
     private final NumericPacketList packetList = new NumericPacketList();
 
     private Session clientSession;
@@ -80,7 +82,7 @@ public class NumericProtocol implements Protocol<Integer> {
                 if (method.getParameterCount() == 2) {
                     Class<?> clazz = method.getParameterTypes()[0];
                     Class<?> clazz2 = method.getParameterTypes()[1];
-                    if (SimplePacket.class.isAssignableFrom(clazz) && clazz2 == Channel.class) {
+                    if (SimplePacket.class.isAssignableFrom(clazz) && clazz2 == Session.class) {
                         if (!listeners.containsKey(listener))
                             listeners.put(listener, new HashMap<>());
                         listeners.get(listener).put((Class<? extends SimplePacket>) clazz, method);
@@ -161,6 +163,21 @@ public class NumericProtocol implements Protocol<Integer> {
     @Override
     public SimplePacket readIdentifierFromByteBuf(ByteBuf byteBuf) {
         return createPacket(byteBuf.readInt());
+    }
+
+    @Override
+    public void registerSessionListener(SimpleSessionListener listener) {
+        this.sessionListeners.add(listener);
+    }
+
+    @Override
+    public void unregisterSessionListener(SimpleSessionListener listener) {
+        this.sessionListeners.remove(listener);
+    }
+
+    @Override
+    public List<SimpleSessionListener> getSessionListeners() {
+        return sessionListeners;
     }
 
 

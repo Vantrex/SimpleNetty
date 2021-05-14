@@ -2,6 +2,7 @@ package de.vantrex.simplenetty.protocol;
 
 import de.vantrex.simplenetty.annotations.exceptions.AnnotationNotFoundException;
 import de.vantrex.simplenetty.listener.SimplePacketListener;
+import de.vantrex.simplenetty.listener.SimpleSessionListener;
 import de.vantrex.simplenetty.packet.SimplePacket;
 import de.vantrex.simplenetty.packet.exceptions.PacketAlreadyRegisteredException;
 import de.vantrex.simplenetty.packet.exceptions.PacketIdAlreadyRegisteredException;
@@ -44,5 +45,11 @@ public interface Protocol<T> {
     void writeIdentifierToByteBuf(ByteBuf byteBuf, SimplePacket packet);
 
     SimplePacket readIdentifierFromByteBuf(ByteBuf byteBuf);
+
+    void registerSessionListener(SimpleSessionListener listener);
+
+    void unregisterSessionListener(SimpleSessionListener listener);
+
+    List<SimpleSessionListener> getSessionListeners();
 
 }

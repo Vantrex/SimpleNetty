@@ -11,12 +11,10 @@ import io.netty.channel.epoll.EpollEventLoopGroup;
 import io.netty.channel.epoll.EpollSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
-import io.netty.channel.socket.nio.NioServerSocketChannel;
-import lombok.Getter;
+import io.netty.channel.socket.nio.NioSocketChannel;
 
 import java.net.SocketAddress;
 
-@Getter
 public class SimpleClient {
 
     private static final boolean EPOLL = Epoll.isAvailable();
@@ -38,7 +36,7 @@ public class SimpleClient {
         try {
             bootstrap = new Bootstrap()
                     .group(worker)
-                    .channel(EPOLL ? EpollSocketChannel.class : NioServerSocketChannel.class)
+                    .channel(EPOLL ? EpollSocketChannel.class : NioSocketChannel.class)
                     .handler(new SimpleChannelInitializer<SocketChannel>(settings.protocol(), false));
 
                     channel = bootstrap.connect(settings.address(), settings.port())
@@ -96,4 +94,7 @@ public class SimpleClient {
         }
     }
 
+    public SimpleClientSettings getSettings() {
+        return settings;
+    }
 }

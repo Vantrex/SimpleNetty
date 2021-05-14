@@ -19,11 +19,14 @@ public class PacketDecoder extends MessageToMessageDecoder<ByteBuf> {
 
     @Override
     protected void decode(ChannelHandlerContext context, ByteBuf buf, List<Object> list) {
-        SimplePacket packet = protocol.readIdentifierFromByteBuf(buf);
-        if (packet == null) {
-            throw new PacketNotFoundException("Packet not found (Identifier: " + protocol.getIdentifier().getSimpleName() + ") not found.");
+        int length = buf.readInt();
+        if (length > 0) {
+            SimplePacket packet = protocol.readIdentifierFromByteBuf(buf);
+            if (packet == null) {
+                throw new PacketNotFoundException("Packet not found (Identifier: " + protocol.getIdentifier().getSimpleName() + ") not found.");
+            }
+            packet.read(buf);
+            list.add(packet);
         }
-        packet.read(buf);
-        list.add(packet);
     }
 }

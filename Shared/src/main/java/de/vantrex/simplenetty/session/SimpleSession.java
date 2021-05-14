@@ -1,5 +1,6 @@
 package de.vantrex.simplenetty.session;
 
+import de.vantrex.simplenetty.listener.SimpleSessionListener;
 import de.vantrex.simplenetty.packet.SimplePacket;
 import de.vantrex.simplenetty.packet.internal.PacketPing;
 import de.vantrex.simplenetty.protocol.Protocol;
@@ -51,7 +52,14 @@ public class SimpleSession extends SimpleChannelInboundHandler<SimplePacket> imp
     }
 
     @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        protocol.getSessionListeners().forEach(listener -> listener.onConnect(this));
+    }
+
+
+    @Override
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
+        protocol.getSessionListeners().forEach(listener -> listener.onDisconnect(this));
         protocol.removeSession(this);
     }
 

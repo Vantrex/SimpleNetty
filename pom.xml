@@ -1,13 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.vantrex.netty</groupId>
     <artifactId>SimpleNetty</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1-RELEASE</version>
     <modules>
         <module>Client</module>
         <module>Server</module>
@@ -16,12 +13,18 @@
     </modules>
 
     <distributionManagement>
-        <!-- Publish the versioned releases here -->
-        <!-- Publish the versioned releases here -->
-        <snapshotRepository>
-            <id>aspire-nexus</id>
+
+        <repository>
+            <id>vantrex-nexus</id>
             <name>SimpleNetty</name>
-            <url>http://vantrex.de:8081/repository/maven-snapshots/</url>
+            <url>http://maven.vantrex.de/repository/maven-releases/</url>
+        </repository>
+        
+        <snapshotRepository>
+            <id>vantrex-nexus</id>
+            <name>SimpleNetty</name>
+            <url>http://maven.vantrex.de/repository/maven-snapshots/</url>
+            <uniqueVersion>true</uniqueVersion>
         </snapshotRepository>
 
     </distributionManagement>
