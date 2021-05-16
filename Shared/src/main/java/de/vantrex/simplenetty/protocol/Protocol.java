@@ -9,8 +9,10 @@ import de.vantrex.simplenetty.packet.exceptions.PacketIdAlreadyRegisteredExcepti
 import de.vantrex.simplenetty.session.Session;
 import io.netty.buffer.ByteBuf;
 
+import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 public interface Protocol<T> {
 
@@ -51,5 +53,7 @@ public interface Protocol<T> {
     void unregisterSessionListener(SimpleSessionListener listener);
 
     List<SimpleSessionListener> getSessionListeners();
+
+    Map<SimplePacketListener, Map<Class<? extends SimplePacket>, Method>> getPacketListeners();
 
 }

@@ -72,7 +72,7 @@ public class NumericProtocol implements Protocol<Integer> {
             if (method.getAnnotation(SimplePacketHandler.class) != null) {
                 if (method.getParameterCount() == 1) {
                     Class<?> clazz = method.getParameterTypes()[0];
-                    if (SimplePacket.class.isAssignableFrom(clazz)) {
+                    if (SimplePacket.class.isAssignableFrom(clazz) || clazz == SimplePacket.class) {
                         if (!listeners.containsKey(listener))
                             listeners.put(listener, new HashMap<>());
                         listeners.get(listener).put((Class<? extends SimplePacket>) clazz, method);
@@ -82,7 +82,7 @@ public class NumericProtocol implements Protocol<Integer> {
                 if (method.getParameterCount() == 2) {
                     Class<?> clazz = method.getParameterTypes()[0];
                     Class<?> clazz2 = method.getParameterTypes()[1];
-                    if (SimplePacket.class.isAssignableFrom(clazz) && clazz2 == Session.class) {
+                    if ((SimplePacket.class.isAssignableFrom(clazz) || clazz == SimplePacket.class) && clazz2 == Session.class) {
                         if (!listeners.containsKey(listener))
                             listeners.put(listener, new HashMap<>());
                         listeners.get(listener).put((Class<? extends SimplePacket>) clazz, method);
@@ -96,6 +96,17 @@ public class NumericProtocol implements Protocol<Integer> {
     public void callPacketHandler(SimplePacket packet, Session session) {
 
         for (Map.Entry<SimplePacketListener, Map<Class<? extends SimplePacket>, Method>> entry : listeners.entrySet()) {
+            if (entry.getValue().containsKey(packet.getClass().getSuperclass())) {
+                try {
+                    Method m = entry.getValue().get(packet.getClass().getSuperclass());
+                    if (m.getParameterCount() == 1)
+                        m.invoke(entry.getKey(), packet);
+                    else
+                        m.invoke(entry.getKey(), packet, session);
+                } catch (InvocationTargetException | IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
             if (entry.getValue().containsKey(packet.getClass())) {
                 try {
                     Method m = entry.getValue().get(packet.getClass());
@@ -178,6 +189,11 @@ public class NumericProtocol implements Protocol<Integer> {
     @Override
     public List<SimpleSessionListener> getSessionListeners() {
         return sessionListeners;
+    }
+
+    @Override
+    public Map<SimplePacketListener, Map<Class<? extends SimplePacket>, Method>> getPacketListeners() {
+        return listeners;
     }
 
 

@@ -23,6 +23,12 @@ public class PacketDecoder extends MessageToMessageDecoder<ByteBuf> {
         if (length > 0) {
             SimplePacket packet = protocol.readIdentifierFromByteBuf(buf);
             if (packet == null) {
+                if (protocol.getClientSession() == null) { // is server
+                    protocol.getSessions().forEach(session -> {
+                        session.getChannel().writeAndFlush(buf); // idk lets try if that works, it should i guess
+                    });
+                    return;
+                }
                 throw new PacketNotFoundException("Packet not found (Identifier: " + protocol.getIdentifier().getSimpleName() + ") not found.");
             }
             packet.read(buf);
