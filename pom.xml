@@ -17,7 +17,7 @@
         <repository>
             <id>vantrex-nexus</id>
             <name>SimpleNetty</name>
-            <url>https://maven.vantrex.de/repository/maven-releases/</url>
+            <url>https://maven.vantrex.de/repository/drapuria-public/</url>
         </repository>
         
         <snapshotRepository>
