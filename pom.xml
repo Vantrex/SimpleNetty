@@ -17,13 +17,13 @@
         <repository>
             <id>vantrex-nexus</id>
             <name>SimpleNetty</name>
-            <url>http://maven.vantrex.de/repository/maven-releases/</url>
+            <url>https://maven.vantrex.de/repository/maven-releases/</url>
         </repository>
         
         <snapshotRepository>
             <id>vantrex-nexus</id>
             <name>SimpleNetty</name>
-            <url>http://maven.vantrex.de/repository/maven-snapshots/</url>
+            <url>https://maven.vantrex.de/repository/maven-snapshots/</url>
             <uniqueVersion>true</uniqueVersion>
         </snapshotRepository>
     </distributionManagement>
