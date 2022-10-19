@@ -27,6 +27,7 @@ public class NumericProtocol implements Protocol<Integer> {
     private Session clientSession;
     private final List<Session> sessions = new ArrayList<>();
 
+    private boolean catchInvalidPackets = true;
 
     @Override
     public Class<Integer> getIdentifier() {
@@ -189,6 +190,16 @@ public class NumericProtocol implements Protocol<Integer> {
     @Override
     public List<SimpleSessionListener> getSessionListeners() {
         return sessionListeners;
+    }
+
+    @Override
+    public boolean catchInvalidPackets() {
+        return catchInvalidPackets;
+    }
+
+    @Override
+    public void setCatchInvalidPackets(boolean catchInvalidPackets) {
+        this.catchInvalidPackets = catchInvalidPackets;
     }
 
     @Override

@@ -54,6 +54,10 @@ public interface Protocol<T> {
 
     List<SimpleSessionListener> getSessionListeners();
 
+    boolean catchInvalidPackets();
+
+    void setCatchInvalidPackets(boolean catchInvalidPackets);
+
     Map<SimplePacketListener, Map<Class<? extends SimplePacket>, Method>> getPacketListeners();
 
 }

@@ -25,10 +25,11 @@ public class PacketDecoder extends MessageToMessageDecoder<ByteBuf> {
             if (packet == null) {
                 if (protocol.getClientSession() == null) { // is server
                     protocol.getSessions().forEach(session -> {
-                        session.getChannel().writeAndFlush(buf); // idk lets try if that works, it should i guess
+                        session.getChannel().writeAndFlush(buf); // I don't know lets try if that works, it should I guess
                     });
                     return;
                 }
+                if (!protocol.catchInvalidPackets()) return;
                 throw new PacketNotFoundException("Packet not found (Identifier: " + protocol.getIdentifier().getSimpleName() + ") not found.");
             }
             packet.read(buf);

@@ -12,8 +12,8 @@
         <module>All</module>
     </modules>
 
-    <distributionManagement>
 
+    <distributionManagement>
         <repository>
             <id>vantrex-nexus</id>
             <name>SimpleNetty</name>
@@ -26,7 +26,6 @@
             <url>http://maven.vantrex.de/repository/maven-snapshots/</url>
             <uniqueVersion>true</uniqueVersion>
         </snapshotRepository>
-
     </distributionManagement>
 
     <properties>
@@ -45,6 +44,7 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                    <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
             <plugin>
