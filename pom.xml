@@ -4,7 +4,7 @@
     <groupId>de.vantrex.netty</groupId>
     <artifactId>SimpleNetty</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.1-RELEASE</version>
+    <version>1.0.2-RELEASE</version>
     <modules>
         <module>Client</module>
         <module>Server</module>
