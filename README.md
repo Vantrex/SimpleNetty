@@ -13,7 +13,7 @@ Dependency:
         <dependency>
             <groupId>com.github.vantrex</groupId>
             <artifactId>SimpleNetty</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.2-RELEASE</version>
             <scope>compile</scope>
         </dependency>
 ````

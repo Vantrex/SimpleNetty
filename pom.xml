@@ -10,6 +10,7 @@
         <module>Server</module>
         <module>Shared</module>
         <module>All</module>
+        <module>All-Relocated</module>
     </modules>
 
 
