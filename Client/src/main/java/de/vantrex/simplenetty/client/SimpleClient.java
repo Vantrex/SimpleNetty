@@ -29,6 +29,7 @@ public class SimpleClient {
     public SimpleClient(SimpleClientSettings settings) {
         this.settings = settings;
         new Thread(this::init).start();
+        System.out.println("Test");
     }
 
     private void init() {
